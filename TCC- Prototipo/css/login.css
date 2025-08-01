@@ -1,0 +1,84 @@
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.login-box {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  width: 100%;
+}
+
+.login-box h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #22223B;
+  font-weight: 600;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  padding: 12px;
+  margin-bottom: 16px;
+  background: #f0f2f5;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  color: #22223B;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #3A5E9B;
+  box-shadow: 0 0 5px rgba(58, 94, 155, 0.4);
+}
+
+input::placeholder {
+  color: #6c757d;
+}
+
+input[type="submit"] {
+  padding: 12px;
+  background: #FFD166;
+  color: #22223B;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+input[type="submit"]:hover {
+  background: #ffc94d;
+  transform: translateY(-2px);
+}
+
+.botao-cadastro {
+  display: block;
+  text-align: center;
+  margin-top: 12px;
+  padding: 10px;
+  background: transparent;
+  color: #6A4C93;
+  border: 2px solid #6A4C93;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.botao-cadastro:hover {
+  background: #6A4C93;
+  color: white;
+}
