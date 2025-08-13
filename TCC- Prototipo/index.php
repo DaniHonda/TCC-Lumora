@@ -17,7 +17,7 @@ session_start();
             <a href="index.php"><span>LUMORA</span></a>
         </div>
         <div class="titulo-app">
-            <h1>Ajuda+</h1>
+            <h1>AviseJá</h1>
         </div>
         <div class="menu-container">
             <button id="menu-btn" class="menu-btn"><i class="fas fa-bars"></i></button>
@@ -31,7 +31,7 @@ session_start();
                 <li><a href="#">Minha Conta</a></li>
                 <li><a href="principal.php">Cardápio</a></li>
                 <?php if ($_SESSION['nivel'] === 'admin'): ?>
-                    <li><a href="painel_admin.php">Painel de Controle</a></li>
+                    <li><a href="painel_contas.php">Painel de Controle</a></li>
                 <?php endif; ?>
                 <li><a href="logout.php">Logout</a></li>
             <?php else: ?>
