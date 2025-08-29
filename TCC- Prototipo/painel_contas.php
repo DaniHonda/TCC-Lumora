@@ -4,8 +4,43 @@ if (!isset($_SESSION['log']) || $_SESSION['log'] !== 'ativo' || $_SESSION['nivel
 require_once('conexao/conexao.php');
 $mysql = new BancodeDados(); $mysql->conecta();
 ?>
-<!DOCTYPE html><html lang="pt-br"><head><title>Painel de Contas</title><link rel="stylesheet" href="css/painel.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></head>
+<!DOCTYPE html><html lang="pt-br">
+    <head>
+    <title>Painel de Contas</title>
+    <link rel="stylesheet" href="css/painelstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
 <body class="body-admin-panel">
+    <header class="cabecalho-fixo">
+        <div class="logo">
+            <a href="index.php"><span>LUMORA</span></a>
+        </div>
+        <div class="titulo-app">
+            <h1>AviseJá</h1>
+        </div>
+        <div class="menu-container">
+            <button id="menu-btn" class="menu-btn"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+      <nav id="sidemenu" class="sidemenu">
+        <button id="close-btn" class="close-btn">&times;</button>
+        <ul>
+            <?php if (isset($_SESSION['log']) && $_SESSION['log'] === 'ativo'): ?>
+                <li><a href="#">Minha Conta</a></li>
+                <li><a href="principal.php">Cardápio</a></li>
+                <?php if ($_SESSION['nivel'] === 'admin'): ?>
+                    <li><a href="painel_contas.php">Painel de Controle</a></li>
+                <?php endif; ?>
+                <li><a href="logout.php">Logout</a></li>
+            <?php else: ?>
+                <li><a href="login.php">Login</a></li>
+                <li><a href="cadastrologin.php">Cadastro</a></li>
+                <li><a href="principal.php">Cardápio</a></li>
+            <?php endif; ?>
+        </ul>
+    </nav>
+    <div id="overlay" class="overlay"></div>
+<center></br></br></br>
 <div class="admin-panel-container">
     <h1>Gerenciamento de Contas</h1>
     <div class="panel-actions"><a href="criar_conta_painel.php" class="btn-panel-primary">Criar Nova Conta</a><a href='index.php' class="btn-panel-secondary">Voltar à Loja</a></div>
@@ -33,5 +68,7 @@ $mysql = new BancodeDados(); $mysql->conecta();
         </table>
     </div>
 </div>
+                        </center>
+<script src="js/login.js"></script>
 <?php $mysql->fechar(); ?>
 </body></html>

@@ -53,8 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="logo">
             <a href="index.php"><span>LUMORA</span></a>
         </div>
-        <div class="titulo-app"><h1>Ajuda+</h1></div>
-        <div class="menu-container"><button id="menu-btn" class="menu-btn"><i class="fas fa-bars"></i></button></div>
+        <div class="titulo-app"><h1>AviseJá</h1></div>
     </header>
 
     <nav id="sidemenu" class="sidemenu">

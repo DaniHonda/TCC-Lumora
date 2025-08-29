@@ -37,7 +37,7 @@ session_start();
             <?php else: ?>
                 <li><a href="login.php">Login</a></li>
                 <li><a href="cadastrologin.php">Cadastro</a></li>
-                <li><a href="principal.php">Cardápio</a></li>
+                <li><a href="cardapio.html">Cardápio</a></li>
             <?php endif; ?>
         </ul>
     </nav>

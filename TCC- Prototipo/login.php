@@ -9,6 +9,14 @@
 <body class="body-login">
     <div class="login-container">
         <div class="login-box">
+            <header class="cabecalho-fixo">
+        <div class="logo">
+            <a href="index.php"><span>LUMORA</span></a>
+        </div>
+        <div class="titulo-app">
+            <h1>AviseJá</h1>
+        </div>
+    </header>
             <h1>Login</h1>
             <p style="text-align: center; margin-top: -10px; margin-bottom: 20px;">Acesse sua conta para continuar.</p>
             
