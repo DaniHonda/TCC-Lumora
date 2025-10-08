@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  padding: 14px;
+  width: 400px;  
+  margin-bottom: 28px;
+  background: #f0f2f5;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  color: #36223b;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  font-size: 16px;
+  line-height: 1.4; 
+}
+
+input:focus {
+  outline: none;
+  border-color: #3A5E9B;
+  box-shadow: 0 0 5px rgba(58, 94, 155, 0.4);
+}
+
+input::placeholder {
+  color: #6c757d;
+}
+
+input[type="submit"] {
+  padding: 12px;
+  background: #960cb4;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+input[type="submit"]:hover {
+  background: #61006f;
+  transform: translateY(-2px);
+}
+
+.botao-cadastro {
+  display: block;
+  text-align: center;
+  margin-top: 12px;
+  padding: 10px;
+  background: transparent;
+  color: #6A4C93;
+  border: 2px solid #6A4C93;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.botao-cadastro:hover {
+  background: #6A4C93;
+  color: white;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.imagem {
+ flex: 1.5; 
+  background-color: #6A4C93; 
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+   justify-content: flex-start;
+}
+
+.imagem img {
+  max-width: 800px;  
+  width: 100%;      
+  height: auto;
+  margin-left: 30px;
+}
+
+.login-container {
+  flex: 1;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  padding: 3rem;
+}
+
+.login-container h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #22223B;
+}
+
+.login-container p {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.logo {
+  margin-top: 20px;
+    max-width: 190px;
+  height: auto;
+}
+
+p {
+  font-size: 25px;
+    font-family: Gill Sans, sans-serif;
+    margin-bottom: 3px;
+}
+
+h5 {
+  margin-bottom: 7px;
+  color: #6e6e6e;
+  font-family: Gill Sans, sans-serif;
+}
+
+.botao-voltar {
+  margin-top: 7px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #6A4C93;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.botao-voltar:hover {
+  color: #3A5E9B;
+}
