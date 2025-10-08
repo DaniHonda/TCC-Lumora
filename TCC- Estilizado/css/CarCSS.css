@@ -204,3 +204,93 @@ body {
 #petisco {
   display: none;
 }
+
+.cardapio-container {
+  position: relative;
+  padding: 40px;
+}
+
+/* 1. CLASSE BASE PARA O ESTILO VISUAL DE AMBOS OS BOTÕES */
+.btn-cardapio {
+    background-color: #99c6db;
+    color: #22223B;
+    border: 2px solid #687bb9;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: "Barlow", sans-serif;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-cardapio:hover {
+    background-color: #6A4C93;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* 2. CLASSE APENAS PARA POSICIONAR O BOTÃO "GERENCIAR CARDÁPIO" */
+.btn-gerenciar-posicao {
+    position: absolute;
+    top: 45px;
+    right: 40px;
+    padding: 10px 15px;
+}
+
+/* 3. CLASSE APENAS PARA O TAMANHO DO BOTÃO "VOU COMER!" */
+.btn-confirmar-tamanho {
+    padding: 8px 12px;
+    font-size: 14px;
+    white-space: nowrap; /* Impede que o texto do botão quebre em duas linhas */
+}
+.singleitem {
+  /* Enhanced styling for individual menu items */
+  background-color: #a46be6;
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid #9242fa;
+  margin-top: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-bottom: none;
+  
+  /* New flexbox styles for alignment */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px; /* Adds some space between text and button */
+}
+
+.singleitem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.item-info {
+    flex-grow: 1; /* Allows the text part to take up available space */
+}
+
+/* Container do botão não precisa mais de regras especiais de posicionamento 
+.confirmar-container {
+  /* O flexbox no .singleitem já cuida do alinhamento 
+} 
+
+.btn-confirmar {
+    padding: 8px 12px;
+    font-size: 14px;
+    white-space: nowrap;  Impede que o texto do botão quebre em duas linhas 
+}*/
+
+/* Estilo para o botão depois de confirmado */
+.btn-confirmado {
+    background-color: #d3d3d3; /* Cinza claro */
+    color: #555;
+    border-color: #bbb;
+    cursor: not-allowed; /* Mostra um ícone de "proibido" ao passar o mouse */
+}
+
+/* Remove os efeitos de hover do botão confirmado */
+.btn-confirmado:hover {
+    background-color: #d3d3d3;
+    color: #555;
+    transform: none;
+}
