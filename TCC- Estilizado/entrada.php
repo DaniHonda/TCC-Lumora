@@ -11,6 +11,7 @@ $p_senha = $_POST['senha'];
 $login_sucesso = false;
 $dados_usuario = null;
 
+// Busca por admin ou funcionário
 $sql_admin_emp = "SELECT id, nome, senha, nivel FROM tbusuario WHERE rm = ? AND (nivel = 'admin' OR nivel = 'emp')";
 $stmt = mysqli_prepare($mysql->con, $sql_admin_emp);
 if ($stmt) {
@@ -23,8 +24,10 @@ if ($stmt) {
     mysqli_stmt_close($stmt);
 }
 
+// Se não for admin/emp, busca por aluno
 if (!$dados_usuario && !empty($p_codigo_etec)) {
-    $sql_aluno = "SELECT id, nome, senha, nivel FROM tbusuario WHERE rm = ? AND codigo_etec = ? AND nivel = 'aluno'";
+    // Query atualizada para buscar também o turno
+    $sql_aluno = "SELECT id, nome, senha, nivel, turno FROM tbusuario WHERE rm = ? AND codigo_etec = ? AND nivel = 'aluno'";
     $stmt = mysqli_prepare($mysql->con, $sql_aluno);
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, "ss", $p_rm, $p_codigo_etec);
@@ -37,12 +40,16 @@ if (!$dados_usuario && !empty($p_codigo_etec)) {
     }
 }
 
+// Verifica a senha e inicia a sessão
 if ($dados_usuario && password_verify($p_senha, $dados_usuario['senha'])) {
     $login_sucesso = true;
     session_start();
     $_SESSION['id'] = $dados_usuario['id'];
     $_SESSION['nome'] = $dados_usuario['nome'];
     $_SESSION['nivel'] = $dados_usuario['nivel'];
+    if ($dados_usuario['nivel'] === 'aluno') {
+        $_SESSION['turno'] = $dados_usuario['turno']; // Salva o turno na sessão
+    }
     $_SESSION['log'] = 'ativo';
 
     header("Location: index.php");

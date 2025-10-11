@@ -10,15 +10,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rm = $_POST["rm"];
     $codigo_etec = $_POST["codigo_etec"];
     $senha = $_POST["senha"];
+    $turno = $_POST["turno"]; // Captura o novo campo
     $nivel = 'aluno'; 
 
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO tbusuario (nome, rm, codigo_etec, senha, nivel) VALUES (?, ?, ?, ?, ?)";
+    // SQL atualizado para incluir a coluna 'turno'
+    $sql = "INSERT INTO tbusuario (nome, rm, codigo_etec, senha, nivel, turno) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($mysql->con, $sql);
 
     if ($stmt) {
-        mysqli_stmt_bind_param($stmt, "sssss", $nome, $rm, $codigo_etec, $senhaHash, $nivel);
+        // Parâmetro do bind atualizado para incluir o turno (string -> "ssssss")
+        mysqli_stmt_bind_param($stmt, "ssssss", $nome, $rm, $codigo_etec, $senhaHash, $nivel, $turno);
+        
         if (mysqli_stmt_execute($stmt)) {
             header("Location: login.php?status=cadastrado");
             exit();
@@ -56,16 +60,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="titulo-app"><h1>AviseJá</h1></div>
     </header>
 
-    <nav id="sidemenu" class="sidemenu">
-        <button id="close-btn" class="close-btn">&times;</button>
-        <ul>
-            <li><a href="login.php">Login</a></li>
-            <li><a href="cadastrologin.php">Cadastro</a></li>
-            <li><a href="principal.php">Cardápio</a></li>
-        </ul>
-    </nav>
-    <div id="overlay" class="overlay"></div>
-
     <div class="login-container">
         <div class="login-box">
             <h1>Cadastro de Aluno</h1>
@@ -73,6 +67,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" name="nome" placeholder="Seu nome completo" required>
                 <input type="text" name="codigo_etec" placeholder="Código da sua Etec (Ex: 118)" required>
                 <input type="text" name="rm" placeholder="Seu RM (Registro de Matrícula)" required>
+                
+                <select name="turno" required>
+                    <option value="" disabled selected>Selecione seu turno</option>
+                    <option value="Manhã">Manhã</option>
+                    <option value="Tarde">Tarde</option>
+                    <option value="Noite">Noite</option>
+                </select>
+
                 <input type="password" name="senha" placeholder="Crie uma senha" required>
                 <input type="submit" value="Cadastrar">
                 <a href="index.php" class="botao-voltar">Voltar para Home</a>
