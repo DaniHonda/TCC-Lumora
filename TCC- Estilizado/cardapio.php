@@ -11,7 +11,6 @@ while($row = mysqli_fetch_assoc($query)) {
     $cardapioSemanal[$row['dia_semana']][] = $row;
 }
 
-// Busca as confirmações do aluno, agora na tabela correta
 $confirmacoesFeitas = [];
 if (isset($_SESSION['log']) && $_SESSION['log'] === 'ativo' && $_SESSION['nivel'] === 'aluno' && !empty($_SESSION['turno'])) {
     $mapaTabelas = [
@@ -65,7 +64,7 @@ $diasSemanaMapa = [
             <?php if (isset($_SESSION['log']) && $_SESSION['log'] === 'ativo'): ?>
                 <li><a href="#">Minha Conta</a></li>
                 <?php if ($_SESSION['nivel'] === 'admin'): ?>
-                    <li><a href="painel_contas.php">Painel de Controle</a></li>
+                    <li><a href="painel_contas.php">Painel de Contas</a></li>
                 <?php endif; ?>
                 <li><a href="logout.php" class="btn-logout">Logout</a></li>
             <?php else: ?>
@@ -98,9 +97,15 @@ $diasSemanaMapa = [
                                     <div class="item-info">
                                         <span class='menuitem'><?php echo htmlspecialchars($prato['prato_principal']); ?></span>
                                         <p class='text'>
-                                            <strong>Acompanhamento:</strong> <?php echo htmlspecialchars($prato['acompanhamento']); ?><br>
-                                            <strong>Salada:</strong> <?php echo htmlspecialchars($prato['salada']); ?><br>
-                                            <strong>Sobremesa:</strong> <?php echo htmlspecialchars($prato['sobremesa']); ?>
+                                            <?php if (!empty($prato['acompanhamento'])): ?>
+                                                <strong>Acompanhamento:</strong> <?php echo htmlspecialchars($prato['acompanhamento']); ?><br>
+                                            <?php endif; ?>
+                                            <?php if (!empty($prato['salada'])): ?>
+                                                <strong>Salada:</strong> <?php echo htmlspecialchars($prato['salada']); ?><br>
+                                            <?php endif; ?>
+                                            <?php if (!empty($prato['sobremesa'])): ?>
+                                                <strong>Sobremesa:</strong> <?php echo htmlspecialchars($prato['sobremesa']); ?>
+                                            <?php endif; ?>
                                         </p>
                                     </div>
                                     <?php if (isset($_SESSION['log']) && $_SESSION['log'] === 'ativo' && $_SESSION['nivel'] === 'aluno'): ?>

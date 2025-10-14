@@ -90,18 +90,24 @@ foreach ($turnos as $turno) {
         <div class="admin-panel-container">
             <h1>Gerenciamento do Cardápio</h1>
 
+            <div class="painel-acoes">
+                <a href="limpar_confirmacoes.php" class="btn-limpar" onclick="return confirm('ATENÇÃO: Isso limpará TODAS as confirmações de TODOS os turnos. Deseja continuar?');">
+                    Limpar Confirmações
+                </a>
+            </div>
+
             <div class="cardapio-form">
                 <h2>Adicionar Novo Prato</h2>
                 <form action="processar_cardapio.php?acao=adicionar" method="post">
                     <div class="form-row">
                         <select name="dia_semana" required>
-                            <option value="" disabled selected>Selecione o dia</option>
+                            <option value="" disabled selected>Selecione o dia *</option>
                             <?php foreach ($diasSemana as $dia) echo "<option value='$dia'>$dia</option>"; ?>
                         </select>
-                        <input type="text" name="prato_principal" placeholder="Prato Principal" required>
+                        <input type="text" name="prato_principal" placeholder="Prato Principal *" required>
                     </div>
                     <div class="form-row">
-                        <input type="text" name="acompanhamento" placeholder="Acompanhamento">
+                        <input type="text" name="acompanhamento" placeholder="Acompanhamento *" required>
                         <input type="text" name="salada" placeholder="Salada">
                         <input type="text" name="sobremesa" placeholder="Sobremesa">
                     </div>

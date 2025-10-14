@@ -120,3 +120,28 @@ body.body-gerenciar {
     font-size: 1.2em;
     color: #3a5e9b;
 }
+
+.painel-acoes {
+    display: flex;
+    justify-content: flex-end; 
+    margin-bottom: 20px;
+}
+
+.btn-limpar {
+    padding: 10px 20px;
+    background-color: #d9534f; 
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-family: "Barlow", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-limpar:hover {
+    background-color: #c9302c; 
+    transform: translateY(-2px);
+}
