@@ -77,7 +77,6 @@ foreach ($turnos as $turno) {
           <ul>
             <li><a href="index.php">Início</a></li>
             <li><a href="cardapio.php">Cardápio</a></li>
-            <li><a href="#">Minha Conta</a></li>
             <?php if ($_SESSION['nivel'] === 'admin'): ?>
                 <li><a href="painel_contas.php">Painel de Contas</a></li>
             <?php endif; ?>

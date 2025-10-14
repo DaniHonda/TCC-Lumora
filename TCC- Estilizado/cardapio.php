@@ -62,9 +62,8 @@ $diasSemanaMapa = [
             <li><a href="index.php">Início</a></li>
             <li><a href="cardapio.php">Cardápio</a></li>
             <?php if (isset($_SESSION['log']) && $_SESSION['log'] === 'ativo'): ?>
-                <li><a href="#">Minha Conta</a></li>
                 <?php if ($_SESSION['nivel'] === 'admin'): ?>
-                    <li><a href="painel_contas.php">Painel de Contas</a></li>
+                    <li><a href="painel_contas.php">Painel de Controle</a></li>
                 <?php endif; ?>
                 <li><a href="logout.php" class="btn-logout">Logout</a></li>
             <?php else: ?>

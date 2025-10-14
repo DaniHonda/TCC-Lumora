@@ -6,7 +6,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AviseJá  | Home</title>
+    <title>Ajuda+ | Home</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -25,7 +25,6 @@ session_start();
     <li><a href="cardapio.php">Cardápio</a></li>
     <li><a href="#equipe">Nossa Equipe</a></li>
     <?php if (isset($_SESSION['log']) && $_SESSION['log'] === 'ativo'): ?>
-        <li><a href="#">Minha Conta</a></li>
         <?php if ($_SESSION['nivel'] === 'admin'): ?>
             <li><a href="painel_contas.php">Painel de Controle</a></li>
         <?php endif; ?>
