@@ -9,42 +9,50 @@ $mysql = new BancodeDados();
 $mysql->conecta();
 
 $diasSemana = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira'];
+$turnos = ['Manhã', 'Tarde', 'Noite'];
+$mapaTabelas = [
+    'Manhã' => 'tb_confirmacoes_manha',
+    'Tarde' => 'tb_confirmacoes_tarde',
+    'Noite' => 'tb_confirmacoes_noite'
+];
 
-// --- NOVA LÓGICA DE CONTAGEM ---
-// 1. Inicializa um array com a contagem de todos os dias como 0.
-$contagemConfirmacoes = array_fill_keys($diasSemana, 0);
+$contagemConfirmacoes = [];
+foreach ($diasSemana as $dia) {
+    foreach ($turnos as $turno) {
+        $contagemConfirmacoes[$dia][$turno] = 0;
+    }
+}
 
-// 2. Cria a query para contar as confirmações da semana atual, agrupando por dia.
-// YEARWEEK(data, 1) considera que a semana começa na Segunda-feira.
-$sql_contagem = "
-    SELECT
-        CASE DAYOFWEEK(data_confirmacao)
-            WHEN 2 THEN 'Segunda-feira'
-            WHEN 3 THEN 'Terça-feira'
-            WHEN 4 THEN 'Quarta-feira'
-            WHEN 5 THEN 'Quinta-feira'
-            WHEN 6 THEN 'Sexta-feira'
-        END as dia_semana_nome,
-        COUNT(id) as total
-    FROM
-        tb_confirmacoes
-    WHERE
-        YEARWEEK(data_confirmacao, 1) = YEARWEEK(CURDATE(), 1)
-    GROUP BY
-        dia_semana_nome
-";
+foreach ($turnos as $turno) {
+    $tabela = $mapaTabelas[$turno];
+    $sql_contagem = "
+        SELECT
+            CASE DAYOFWEEK(data_confirmacao)
+                WHEN 2 THEN 'Segunda-feira'
+                WHEN 3 THEN 'Terça-feira'
+                WHEN 4 THEN 'Quarta-feira'
+                WHEN 5 THEN 'Quinta-feira'
+                WHEN 6 THEN 'Sexta-feira'
+            END as dia_semana_nome,
+            COUNT(id) as total
+        FROM
+            `$tabela`
+        WHERE
+            YEARWEEK(data_confirmacao, 1) = YEARWEEK(CURDATE(), 1)
+        GROUP BY
+            dia_semana_nome
+    ";
 
-// 3. Executa a query e preenche o array com os totais encontrados.
-$query_contagem = mysqli_query($mysql->con, $sql_contagem);
-if ($query_contagem) {
-    while ($dados_contagem = mysqli_fetch_assoc($query_contagem)) {
-        if (!empty($dados_contagem['dia_semana_nome'])) {
-            $contagemConfirmacoes[$dados_contagem['dia_semana_nome']] = $dados_contagem['total'];
+    $query_contagem = mysqli_query($mysql->con, $sql_contagem);
+    if ($query_contagem) {
+        while ($dados_contagem = mysqli_fetch_assoc($query_contagem)) {
+            $dia = $dados_contagem['dia_semana_nome'];
+            if (!empty($dia)) {
+                $contagemConfirmacoes[$dia][$turno] = $dados_contagem['total'];
+            }
         }
     }
 }
-// --- FIM DA LÓGICA DE CONTAGEM ---
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -91,23 +99,26 @@ if ($query_contagem) {
             <table class="product-data-table">
                 <thead>
                     <tr>
-                        <th>Dia da Semana</th>
-                        <th>Prato Principal</th>
-                        <th>Acompanhamento</th>
-                        <th>Salada</th>
-                        <th>Sobremesa</th>
-                        <th>Confirmados</th>
-                        <th>Ações</th>
+                        <th rowspan="2">Dia da Semana</th>
+                        <th rowspan="2">Prato Principal</th>
+                        <th rowspan="2">Acompanhamento</th>
+                        <th rowspan="2">Salada</th>
+                        <th rowspan="2">Sobremesa</th>
+                        <th colspan="3">Confirmados por Turno</th>
+                        <th rowspan="2">Ações</th>
+                    </tr>
+                    <tr>
+                        <th>Manhã</th>
+                        <th>Tarde</th>
+                        <th>Noite</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT * FROM tb_cardapio ORDER BY FIELD(dia_semana, 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira')";
-                    $query = mysqli_query($mysql->con, $sql);
-                    while ($dados = mysqli_fetch_array($query)) :
-                        // Pega a contagem para o dia da semana atual da linha
+                    $sql_cardapio = "SELECT * FROM tb_cardapio ORDER BY FIELD(dia_semana, 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira')";
+                    $query_cardapio = mysqli_query($mysql->con, $sql_cardapio);
+                    while ($dados = mysqli_fetch_array($query_cardapio)) :
                         $dia = $dados['dia_semana'];
-                        $confirmadosDoDia = $contagemConfirmacoes[$dia] ?? 0;
                     ?>
                         <tr>
                             <td><?php echo htmlspecialchars($dados['dia_semana']); ?></td>
@@ -115,7 +126,9 @@ if ($query_contagem) {
                             <td><?php echo htmlspecialchars($dados['acompanhamento']); ?></td>
                             <td><?php echo htmlspecialchars($dados['salada']); ?></td>
                             <td><?php echo htmlspecialchars($dados['sobremesa']); ?></td>
-                            <td><strong><?php echo $confirmadosDoDia; ?></strong></td>
+                            <td><strong><?php echo $contagemConfirmacoes[$dia]['Manhã']; ?></strong></td>
+                            <td><strong><?php echo $contagemConfirmacoes[$dia]['Tarde']; ?></strong></td>
+                            <td><strong><?php echo $contagemConfirmacoes[$dia]['Noite']; ?></strong></td>
                             <td class="actions-cell">
                                 <a href="processar_cardapio.php?acao=excluir&id=<?php echo $dados['id']; ?>" onclick="return confirm('Tem certeza que deseja excluir este item?');" class="btn-panel-danger btn-sm">Excluir</a>
                             </td>
