@@ -1,0 +1,122 @@
+body.body-gerenciar {
+    background: radial-gradient(circle at top left, #3a5e9b, #2a0845, #000000);
+    padding-top: 100px;
+}
+
+.gerenciar-container-principal {
+    margin: 50px auto;
+    max-width: 1200px;
+    width: 90%;
+    background: radial-gradient(top left, #5678b1, #52207a, #555555);
+    padding: 40px;
+    border-radius: 30px;
+    border: 1px solid #0fc0d1;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.admin-panel-container h1,
+.admin-panel-container h2 {
+    text-align: center;
+    font-family: "Carter One", cursive;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.admin-panel-container h1 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+.admin-panel-container h2 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+}
+
+.cardapio-form {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cardapio-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row > * {
+    flex: 1;
+}
+
+.cardapio-form input[type="text"],
+.cardapio-form select {
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f0f2f5;
+    font-size: 16px;
+    color: #22223B;
+}
+
+.btn-adicionar-item {
+    width: 100%;
+    padding: 14px;
+    background-color: #ffffff;
+    color: #22223B;
+    border: 2px solid #6A4C93;
+    border-radius: 8px;
+    font-family: "Barlow", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-adicionar-item:hover {
+    background-color: #6A4C93;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.product-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-data-table th,
+.product-data-table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.product-data-table thead {
+    background-color: #6a4c93;
+    color: #fff;
+    font-family: "Barlow", sans-serif;
+    font-size: 1.1em;
+}
+
+.product-data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.product-data-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.product-data-table strong {
+    font-size: 1.2em;
+    color: #3a5e9b;
+}
