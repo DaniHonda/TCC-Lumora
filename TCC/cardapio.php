@@ -53,34 +53,31 @@ $diasSemanaMapa = [
 <body>
     <header class="cabecalho-fixo">
         <div class="logo">
-         <a href="index.php">
-            <img src="imgs/lumora.png" alt="Logo Lumora" class="logo-img">
-        </a>
-</div>
-       <nav class="menu-principal">
-          <ul>
-            <li><a href="index.php">Início</a></li>
-            <li><a href="cardapio.php">Cardápio</a></li>
-            <?php if (isset($_SESSION['log']) && $_SESSION['log'] === 'ativo'): ?>
-                <?php if ($_SESSION['nivel'] === 'admin'): ?>
-                    <li><a href="painel_contas.php">Painel de Controle</a></li>
+            <a href="index.php">
+                <img src="imgs/lumora.png" alt="Logo Lumora" class="logo-img">
+            </a>
+        </div>
+        <nav class="menu-principal">
+            <ul>
+                <li><a href="index.php">Início</a></li>
+                <li><a href="cardapio.php">Cardápio</a></li>
+                <?php if (isset($_SESSION['log']) && $_SESSION['log'] === 'ativo'): ?>
+                    <?php if ($_SESSION['nivel'] === 'admin'): ?>
+                        <li><a href="painel_contas.php">Painel de Controle</a></li>
+                    <?php endif; ?>
+                    <li><a href="logout.php" class="btn-logout">Logout</a></li>
+                <?php else: ?>
+                    <li><a href="login.php" class="btn-login">Login</a></li>
+                    <li><a href="cadastrologin.php" class="btn-cadastro">Cadastro</a></li>
                 <?php endif; ?>
-                <li><a href="logout.php" class="btn-logout">Logout</a></li>
-            <?php else: ?>
-                <li><a href="login.php" class="btn-login">Login</a></li>
-                <li><a href="cadastrologin.php" class="btn-cadastro">Cadastro</a></li>
-            <?php endif; ?>
-          </ul>
+            </ul>
         </nav> 
     </header>
 
     <div id='main'>
+        <h1 class="cardapio-titulo">Cardápio da Semana</h1>
+
         <div class="cardapio-container">
-            <h1 class="cardapio-titulo">Cardápio da Semana</h1>
-            <?php if (isset($_SESSION['log']) && $_SESSION['log'] === 'ativo' && ($_SESSION['nivel'] === 'admin' || $_SESSION['nivel'] === 'emp')): ?>
-                <a href="gerenciar_cardapio.php" class="btn-cardapio btn-gerenciar-posicao">Gerenciar Cardápio</a>
-            <?php endif; ?>
-            
             <?php if (!empty($cardapioSemanal)): ?>
                 <?php foreach ($cardapioSemanal as $dia => $pratos): ?>
                     <?php
@@ -88,40 +85,37 @@ $diasSemanaMapa = [
                     $dataDoPrato = date('Y-m-d', strtotime("$diaEmIngles this week"));
                     $jaConfirmado = in_array($dataDoPrato, $confirmacoesFeitas);
                     ?>
-                    <div class="dia-cardapio">
-                        <h2 class="dia-titulo"><?php echo $dia; ?></h2>
-                        <div class="pratos-container">
+                    <div class="card-dia">
+                        <div class="dia-semana"><?php echo $dia; ?></div>
+                        <div class="data"><?php echo date('d/m/Y', strtotime($dataDoPrato)); ?></div>
+
+                        <div class="itens">
                             <?php foreach ($pratos as $prato): ?>
-                                <div class='singleitem'>
-                                    <div class="item-info">
-                                        <span class='menuitem'><?php echo htmlspecialchars($prato['prato_principal']); ?></span>
-                                        <p class='text'>
-                                            <?php if (!empty($prato['acompanhamento'])): ?>
-                                                <strong>Acompanhamento:</strong> <?php echo htmlspecialchars($prato['acompanhamento']); ?><br>
-                                            <?php endif; ?>
-                                            <?php if (!empty($prato['salada'])): ?>
-                                                <strong>Salada:</strong> <?php echo htmlspecialchars($prato['salada']); ?><br>
-                                            <?php endif; ?>
-                                            <?php if (!empty($prato['sobremesa'])): ?>
-                                                <strong>Sobremesa:</strong> <?php echo htmlspecialchars($prato['sobremesa']); ?>
-                                            <?php endif; ?>
-                                        </p>
-                                    </div>
-                                    <?php if (isset($_SESSION['log']) && $_SESSION['log'] === 'ativo' && $_SESSION['nivel'] === 'aluno'): ?>
-                                        <div class="confirmar-container">
-                                            <?php if ($jaConfirmado): ?>
-                                                <button type="button" class="btn-cardapio btn-confirmar-tamanho btn-confirmado" disabled>Confirmado</button>
-                                            <?php else: ?>
-                                                <form action="processar_confirmacao.php" method="post" style="margin: 0;">
-                                                    <input type="hidden" name="data_a_confirmar" value="<?php echo $dataDoPrato; ?>">
-                                                    <button type="submit" class="btn-cardapio btn-confirmar-tamanho">Vou Comer!</button>
-                                                </form>
-                                            <?php endif; ?>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
+                                <p><strong>Prato principal:</strong> <?php echo htmlspecialchars($prato['prato_principal']); ?></p>
+                                <?php if (!empty($prato['acompanhamento'])): ?>
+                                    <p><strong>Acompanhamento:</strong> <?php echo htmlspecialchars($prato['acompanhamento']); ?></p>
+                                <?php endif; ?>
+                                <?php if (!empty($prato['salada'])): ?>
+                                    <p><strong>Salada:</strong> <?php echo htmlspecialchars($prato['salada']); ?></p>
+                                <?php endif; ?>
+                                <?php if (!empty($prato['sobremesa'])): ?>
+                                    <p><strong>Sobremesa:</strong> <?php echo htmlspecialchars($prato['sobremesa']); ?></p>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         </div>
+
+                        <?php if (isset($_SESSION['log']) && $_SESSION['log'] === 'ativo' && $_SESSION['nivel'] === 'aluno'): ?>
+                            <div class="confirmar-container">
+                                <?php if ($jaConfirmado): ?>
+                                    <button type="button" class="btn-cardapio btn-confirmar-tamanho btn-confirmado" disabled>Confirmado</button>
+                                <?php else: ?>
+                                    <form action="processar_confirmacao.php" method="post" style="margin: 0;">
+                                        <input type="hidden" name="data_a_confirmar" value="<?php echo $dataDoPrato; ?>">
+                                        <button type="submit" class="btn-cardapio btn-confirmar-tamanho">Vou Comer!</button>
+                                    </form>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
@@ -130,7 +124,23 @@ $diasSemanaMapa = [
                 </div>
             <?php endif; ?>
         </div>
+
+        <?php if (isset($_SESSION['log']) && $_SESSION['log'] === 'ativo' && ($_SESSION['nivel'] === 'admin' || $_SESSION['nivel'] === 'emp')): ?>
+            <a href="gerenciar_cardapio.php" class="btn-cardapio btn-gerenciar-posicao">Gerenciar Cardápio</a>
+        <?php endif; ?>
+
+        <p class="obs">
+            <strong>*Observações:</strong><br>
+            Cardápio sujeito a alterações conforme disponibilidade dos gêneros e hortifrutis.<br>
+            As frutas enviadas poderão ser ofertadas aos alunos conforme critério da gestão escolar.
+        </p>
     </div>
+
+        <footer>
+        <h5>..................................................................................................................................................................................................................................................</h5>
+        <p> Copyright © 2025 AviseJá. Desenvolvido por Lumora. </p>
+        
+    </footer>
 
     <script src="js/login.js"></script>
 </body>

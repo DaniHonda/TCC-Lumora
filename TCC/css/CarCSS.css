@@ -1,296 +1,197 @@
-@import url("https://fonts.googleapis.com/css?family=Barlow|Carter+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  --lumora-primary: #6a4c93;
+  --lumora-light: #f7f5fb;
+  --lumora-mid: #ede6f6;
+  --lumora-softpurple: #e9def8;
+  --text-dark: #2b2140;
+  --radius: 18px;
+  --shadow: 0 8px 20px rgba(106, 76, 147, 0.15);
+}
+
 body {
-  background: radial-gradient(circle at top left, #3a5e9b, #2a0845, #000000);
-  /* Added padding-top to account for fixed header */
-  padding-top: 100px;
-}
-
-#main {
-  /* Updated main container for better centering and spacing */
-  margin: 50px auto;
-  max-width: 1200px;
-  width: 90%;
-  background: radial-gradient(top left, #5678b1, #52207a, #555555);
-  padding: 0;
-  border-radius: 30px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #0fc0d1;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-.cabecalho-fixo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 85px;
-  background: radial-gradient(circle at top left, #3a5e9b, #2a0845, #000000);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  z-index: 1000;
-  box-sizing: border-box;
-}
-
-.cabecalho-fixo .titulo-app h1 {
-  font-size: 1.6em;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--lumora-light);
+  color: var(--text-dark);
   margin: 0;
-  color: #3a5e9b;
-  font-weight: 500;
-}
-.menu {
-  font-family: "Carter One", cursive;
-  font-size: 22px;
-  padding-left: 10px;
-  padding-right: 10px;
-  color: #474747;
-  text-decoration: none;
-}
-
-.menu:hover {
-  color: rgb(255, 255, 255);
-  background-color: #ca1517;
-  border-radius: 30px;
-}
-
-.atual {
-  color: white;
-  background-color: #ca1517;
-  border-radius: 30px;
-}
-
-.bullet {
-  font-family: "Carter One", cursive;
-  font-size: 22px;
-  margin-right: 3px;
-  margin-left: 3px;
-}
-
-#navigation {
-  text-align: center;
-}
-#dynamic {
-  margin-top: 20px;
-  padding: 0px 12% 0px 12%;
-}
-
-/* Added new styles for better organization */
-.cardapio-container {
-  padding: 40px;
+  padding: 0;
 }
 
 .cardapio-titulo {
   text-align: center;
-  font-family: "Carter One", cursive;
-  font-size: 2.5em;
-  color: #3f81c2;
-  margin-bottom: 40px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.dia-cardapio {
-  margin-bottom: 40px;
-  background-color: #ab4ff7;
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-  border: 1px solid #157483;
-}
-
-.dia-titulo {
-  font-family: "Carter One", cursive;
-  font-size: 1.8em;
-  color: #6f37b8;
-  text-align: center;
-  margin-bottom: 25px;
-  padding-bottom: 10px;
-  border-bottom: 3px solid #0fc0d1;
-}
-
-.pratos-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.singleitem {
-  /* Enhanced styling for individual menu items */
-  background-color: #a46be6;
-  padding: 20px;
-  border-radius: 15px;
-  border: 1px solid #9242fa;
-  margin-top: 0;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border-bottom: none;
-}
-
-.singleitem:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-}
-
-.menuitem {
-  font-family: "Carter One", cursive;
-  font-weight: 600;
-  color: #40008a;
-  font-size: 1.4em;
-  border-style: none;
-  padding-bottom: 10px;
-  margin-right: 10px;
-  display: block;
+  font-size: 2.3em;
+  color: var(--lumora-primary);
+  font-weight: 700;
+  margin-top: 120px;
   margin-bottom: 15px;
 }
 
-.text {
-  margin: 0;
-  font-family: "Barlow", sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  color: #303030;
-  line-height: 1.6;
-}
-
-.text strong {
-  color: #000000;
-  font-weight: 600;
-}
-
-.cardapio-vazio {
-  text-align: center;
-  padding: 60px 20px;
-  background-color: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-}
-
-.cardapio-vazio p {
-  font-family: "Barlow", sans-serif;
-  font-size: 1.2em;
-  color: #666;
-  margin: 0;
-}
-
-/* Added responsive design improvements */
-@media (max-width: 768px) {
-  #main {
-    margin: 30px 20px;
-    width: calc(100% - 40px);
-  }
-
-  .cardapio-container {
-    padding: 20px;
-  }
-
-  .cardapio-titulo {
-    font-size: 2em;
-  }
-
-  .dia-titulo {
-    font-size: 1.5em;
-  }
-
-  .dia-cardapio {
-    padding: 20px;
-  }
-}
-
-#nordestina {
-  display: none;
-}
-
-#petisco {
-  display: none;
+.cardapio-titulo::after {
+  content: "";
+  width: 90px;
+  height: 4px;
+  background-color: var(--lumora-primary);
+  border-radius: 5px;
+  display: block;
+  margin: 8px auto 0;
 }
 
 .cardapio-container {
-  position: relative;
-  padding: 40px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* 1. CLASSE BASE PARA O ESTILO VISUAL DE AMBOS OS BOTÕES */
+.card-dia {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  flex: 1 1 210px;
+  max-width: 210px;
+  transition: all 0.25s ease;
+  border: 1px solid rgba(106, 76, 147, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-dia:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(106, 76, 147, 0.25);
+  border-color: rgba(106, 76, 147, 0.4);
+}
+
+.card-dia .dia-semana {
+  background-color: var(--lumora-primary);
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  padding: 12px 0;
+  font-size: 1.1em;
+}
+
+.card-dia .data {
+  background-color: var(--lumora-softpurple);
+  color: var(--text-dark);
+  text-align: center;
+  padding: 8px 0;
+  font-weight: 500;
+}
+
+.card-dia .itens {
+  font-size: 0.95em;
+  line-height: 1.6em;
+  flex-grow: 1;
+}
+
+.card-dia .itens p {
+  margin: 0;
+  padding: 10px 15px;
+}
+
+.card-dia .itens p:nth-child(odd) {
+  background-color: #fff;
+}
+
+.card-dia .itens p:nth-child(even) {
+  background-color: var(--lumora-mid);
+}
+
 .btn-cardapio {
-    background-color: #99c6db;
-    color: #22223B;
-    border: 2px solid #687bb9;
-    border-radius: 8px;
-    text-decoration: none;
-    font-family: "Barlow", sans-serif;
-    font-weight: 600;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-    cursor: pointer;
+  background-color: var(--lumora-primary);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  display: block;
+  margin: 15px auto 12px auto;
+  text-align: center;
 }
 
 .btn-cardapio:hover {
-    background-color: #6A4C93;
-    color: #ffffff;
-    transform: translateY(-2px);
+  background-color: #58387d;
 }
 
-/* 2. CLASSE APENAS PARA POSICIONAR O BOTÃO "GERENCIAR CARDÁPIO" */
-.btn-gerenciar-posicao {
-    position: absolute;
-    top: 45px;
-    right: 40px;
-    padding: 10px 15px;
-}
-
-/* 3. CLASSE APENAS PARA O TAMANHO DO BOTÃO "VOU COMER!" */
-.btn-confirmar-tamanho {
-    padding: 8px 12px;
-    font-size: 14px;
-    white-space: nowrap; /* Impede que o texto do botão quebre em duas linhas */
-}
-.singleitem {
-  /* Enhanced styling for individual menu items */
-  background-color: #a46be6;
-  padding: 20px;
-  border-radius: 15px;
-  border: 1px solid #9242fa;
-  margin-top: 0;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border-bottom: none;
-  
-  /* New flexbox styles for alignment */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px; /* Adds some space between text and button */
-}
-
-.singleitem:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-}
-
-.item-info {
-    flex-grow: 1; /* Allows the text part to take up available space */
-}
-
-/* Container do botão não precisa mais de regras especiais de posicionamento 
-.confirmar-container {
-  /* O flexbox no .singleitem já cuida do alinhamento 
-} 
-
-.btn-confirmar {
-    padding: 8px 12px;
-    font-size: 14px;
-    white-space: nowrap;  Impede que o texto do botão quebre em duas linhas 
-}*/
-
-/* Estilo para o botão depois de confirmado */
 .btn-confirmado {
-    background-color: #d3d3d3; /* Cinza claro */
-    color: #555;
-    border-color: #bbb;
-    cursor: not-allowed; /* Mostra um ícone de "proibido" ao passar o mouse */
+  background-color: #c5b3e7;
+  color: #fff;
+  cursor: default;
 }
 
-/* Remove os efeitos de hover do botão confirmado */
-.btn-confirmado:hover {
-    background-color: #d3d3d3;
-    color: #555;
-    transform: none;
+.btn-gerenciar-posicao {
+  display: block;
+  background-color: var(--lumora-primary);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 25px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  margin: 40px auto 20px;
+  text-align: center;
+  width: fit-content;
+}
+
+.btn-gerenciar-posicao:hover {
+  background-color: #58387d;
+}
+
+.obs {
+  text-align: center;
+  font-size: 0.9em;
+  color: #5a4d7a;
+  margin: 40px auto;
+  max-width: 850px;
+  line-height: 1.5em;
+}
+
+.obs strong {
+  color: var(--lumora-primary);
+}
+
+body::before,
+body::after {
+  position: fixed;
+  font-size: 45px;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: -1;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.05));
+}
+
+body::before {
+  content: "🍎 🥦 🍗 🥕 🍞";
+  top: 15%;
+  left: 5%;
+  width: 90%;
+  text-align: center;
+}
+
+body::after {
+  content: "🍌 🍉 🍽️ 🥬 🍲";
+  bottom: 12%;
+  left: 8%;
+  width: 85%;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .card-dia {
+    max-width: 45%;
+  }
+}
+
+@media (max-width: 600px) {
+  .card-dia {
+    max-width: 100%;
+  }
 }
