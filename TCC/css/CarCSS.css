@@ -10,12 +10,22 @@
   --shadow: 0 8px 20px rgba(106, 76, 147, 0.15);
 }
 
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: var(--lumora-light);
   color: var(--text-dark);
   margin: 0;
   padding: 0;
+}
+
+#main {
+  flex: 1;
 }
 
 .cardapio-titulo {
@@ -158,6 +168,24 @@ body {
   color: var(--lumora-primary);
 }
 
+footer {
+  background-color: #382450; 
+  color: #fff;               
+  text-align: center;
+  padding: 18px 0;
+  font-size: 0.95em;
+  width: 100%;
+  position: relative;          
+  margin-top: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 2px solid rgba(255, 255, 255, 0.15);
+  z-index: 10;
+}
+
+
+/* Ícones decorativos */
 body::before,
 body::after {
   position: fixed;
@@ -184,6 +212,7 @@ body::after {
   text-align: center;
 }
 
+/* Responsividade */
 @media (max-width: 900px) {
   .card-dia {
     max-width: 45%;

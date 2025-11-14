@@ -61,7 +61,7 @@ session_start();
     </p>
   </div>
   <div class="imagem">
-    <img src=".jpg" alt="equipe">
+    <img src="imgs/juntos.jpeg" alt="equipe">
   </div>
 </section>
 
@@ -131,31 +131,31 @@ session_start();
     <div class="container-equipe">
         
         <div class="card-equipe">
-            <img src="caminho/para/foto-arthur.jpg" alt="adolpho" class="foto-membro">
+            <img src="imgs/Arthur.jpeg" alt="adolpho" class="foto-membro">
             <h3>Arthur Leon Adolpho Drigo</h3>
             <p>Auxiliar de Backend e Documentação</p>
         </div>
 
         <div class="card-equipe">
-            <img src=".jpg" alt="danilo" class="foto-membro">
+            <img src="imgs/Danilo.jpeg" alt="danilo" class="foto-membro">
             <h3>Danilo Valiceli dos Santos</h3>
             <p>Programador Backend</p>
         </div>
 
         <div class="card-equipe">
-            <img src="jpg" alt="joao" class="foto-membro">
+            <img src="imgs/Joao.jpeg" alt="joao" class="foto-membro">
             <h3>João Bernardo de Moraes Cinta Miguel</h3>
             <p>Programador Backend e Documentação</p>
         </div>
 
         <div class="card-equipe">
-            <img src="jpg" alt="bordigoni" class="foto-membro">
+            <img src="imgs/lucasB.jpeg" alt="bordigoni" class="foto-membro">
             <h3>Lucas Bordigoni Gambassi</h3>
             <p>Programador Frontend</p>
         </div>
 
         <div class="card-equipe">
-            <img src=".jpg" alt="lucas" class="foto-membro">
+            <img src="imgs/lucasS.jpeg" alt="lucas" class="foto-membro">
             <h3>Lucas de Souza Oliveira</h3>
             <p>Programador Frontend</p>
         </div>

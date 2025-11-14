@@ -2,7 +2,7 @@
 class BancodeDados {
     private $host = "localhost";
     private $user = "root";
-    private $senha = "";
+    private $senha = "prof@3t3c";
     private $banco = "gestao_merenda";
     public $con;
 

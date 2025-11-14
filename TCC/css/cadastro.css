@@ -1,72 +1,17 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-body {
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   color: #22223b;
 }
-
-form { display: flex; flex-direction: column; }
-
-input[type="email"],
-input[type="password"],
-input[type="text"],
-select {
-  padding: 14px;
-  width: 400px;
-  margin-bottom: 28px;
-  background: #f0f2f5;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  color: #36223b;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
-  font-size: 16px;
-  line-height: 1.4;
-}
-
-input:focus, select:focus {
-  outline: none;
-  border-color: #3A5E9B;
-  box-shadow: 0 0 5px rgba(58,94,155,0.4);
-}
-
-input[type="submit"] {
-  padding: 12px;
-  width: 400px;
-  background: #960cb4;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background .2s ease, transform .2s ease;
-}
-input[type="submit"]:hover { background: #61006f; transform: translateY(-2px); }
-
-select {
-  appearance: none;
-  background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path fill='%23666' d='M0 0l6 8 6-8z'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  background-size: 12px;
-  cursor: pointer;
-}
-
-.botao-cadastro {
-  display: block;
-  width: 400px;
-  padding: 10px;
-  margin-top: 12px;
-  text-align: center;
-  background: transparent;
-  color: #6A4C93;
-  border: 2px solid #6A4C93;
-  border-radius: 6px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: background .3s ease, color .3s ease;
-}
-.botao-cadastro:hover { background: #6A4C93; color: #fff; }
 
 .container {
   display: flex;
@@ -87,12 +32,13 @@ select {
 }
 
 .svg-cadastro {
-  max-width: 760px;
+  max-width: 880px;
   width: 100%;
   height: auto;
   margin-right: 40px;
   margin-bottom: 60px;
 }
+
 
 .logo {
   position: absolute;
@@ -108,8 +54,8 @@ select {
   background: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: center;  
+  align-items: center;      
   padding: 3rem;
 }
 
@@ -118,10 +64,9 @@ select {
   font-size: 25px;
   color: #555;
   font-weight: 700;
-  margin-top: 38px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   letter-spacing: 0.2px;
-  font-stretch: 110%;
+  text-align: center;
 }
 
 .login-container h5 {
@@ -135,11 +80,74 @@ select {
 }
 
 .login-container form {
-  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+select {
+  padding: 14px;
+  width: 400px;
+  margin-bottom: 28px;
+  background: #f0f2f5;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  color: #36223b;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #3A5E9B;
+  box-shadow: 0 0 5px rgba(58, 94, 155, 0.4);
+}
+
+input[type="submit"] {
+  padding: 12px;
+  width: 400px;
+  background: #960cb4;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
+}
+
+input[type="submit"]:hover {
+  background: #61006f;
+  transform: translateY(-2px);
+}
+
+.botao-cadastro {
+  display: block;
+  width: 400px;
+  padding: 10px;
+  margin-top: 12px;
+  text-align: center;
+  background: transparent;
+  color: #6A4C93;
+  border: 2px solid #6A4C93;
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background .3s ease, color .3s ease;
+}
+
+.botao-cadastro:hover {
+  background: #6A4C93;
+  color: #fff;
 }
 
 .botao-voltar {
-  margin-top: 7px;
+  margin-top: 12px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -148,15 +156,57 @@ select {
   text-decoration: none;
   font-weight: 700;
   transition: color .3s ease;
-  align-self: flex-start;
-  margin-left: calc((100% - 400px) / 2);
 }
-.botao-voltar:hover { color: #3A5E9B; }
 
-.login-container,
-.imagem {
-  height: 100%;
-  overflow: hidden;
-  padding-top: 0;
-  padding-bottom: 0;
+.botao-voltar:hover {
+  color: #3A5E9B;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path fill='%23666' d='M0 0l6 8 6-8z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column-reverse;
+  }
+
+  .imagem {
+  flex: 1.8;
+  background-color: #6A4C93;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 40px;
+  position: relative;
+}
+
+  .login-container {
+  flex: 1;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+}
+
+  input[type="email"],
+  input[type="password"],
+  input[type="text"],
+  select,
+  input[type="submit"],
+  .botao-cadastro {
+    width: 90%;
+  }
+
+  .login-container h5 {
+    width: 90%;
+  }
 }

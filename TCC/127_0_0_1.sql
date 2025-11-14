@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 17/10/2025 às 12:18
+-- Tempo de geração: 14/10/2025 às 10:44
 -- Versão do servidor: 9.1.0
 -- Versão do PHP: 8.3.14
 
@@ -37,10 +37,10 @@ CREATE TABLE IF NOT EXISTS `tbusuario` (
   `codigo_etec` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `senha` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nivel` enum('aluno','admin','emp') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'aluno',
-  `turno` enum('Manhã','Tarde','Noite') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `turno` enum('Manhã','Tarde','Noite') COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `matricula_unica` (`rm`,`codigo_etec`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `tbusuario`
@@ -49,10 +49,8 @@ CREATE TABLE IF NOT EXISTS `tbusuario` (
 INSERT INTO `tbusuario` (`id`, `nome`, `rm`, `codigo_etec`, `senha`, `nivel`, `turno`) VALUES
 (1, 'Administrador', 'adm', NULL, '$2y$10$u3tDfRtlErmGF.s.XE3zhOXbRm49kNGQoIiDQHRUGWVf4lYWfQZlS', 'admin', NULL),
 (2, 'funcionario', 'emp', NULL, '$2y$10$TELj8i9B4JWABBvlXRIFG.MKy9BamLshbHrZd2iZCzJV86SDtlbX2', 'emp', NULL),
-(7, 'pedro', '23001', '210', '$2y$10$BpofzGWOlmy3xXfGHwDkG.fTmJdsae6tiiTG.190j3ByJgugB4QWu', 'aluno', 'Manhã'),
-(9, 'Marcelo', '23003', '210', '$2y$10$Juh9/w7vIm1vkEPkJaZcB.QibEfiD592k.Jpu1/d0oi1Hp5JG28Im', 'aluno', 'Tarde'),
-(11, 'Lucas', '23004', '210', '$2y$10$FPlZlNek4qCQpxUQTZHudOVhSiURRExj07Oi6WEYd/OrnulSLd6aC', 'aluno', 'Manhã'),
-(12, 'danilo', '23002', '210', '$2y$10$mRy9Ts/7.OWgx7cDWYjMeOVTkO7MjscUzJy8bnge0ulkNPZdzOp6K', 'aluno', 'Tarde');
+(3, 'Danilo', '23006', '210', '$2y$10$RxPpWEc1gy94ITwmgu2rIevssSzWZISXg6ZhNA/ZPCvVERzyOkZTu', 'aluno', 'Tarde'),
+(5, 'pedro', '23001', '210', '$2y$10$1s2d.twzWzid9suE7XCBMukpBRS9HxjdrOSvLhW77YERGwS5gkIDG', 'aluno', 'Manhã');
 
 -- --------------------------------------------------------
 
@@ -69,18 +67,15 @@ CREATE TABLE IF NOT EXISTS `tb_cardapio` (
   `salada` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `sobremesa` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `tb_cardapio`
 --
 
 INSERT INTO `tb_cardapio` (`id`, `dia_semana`, `prato_principal`, `acompanhamento`, `salada`, `sobremesa`) VALUES
-(4, 'Segunda-feira', 'Feijoada', 'arroz e farofa', 'alface', 'melância'),
-(5, 'Terça-feira', 'Carne moída', 'Arroz, feijão preto e farofa', '', 'banana'),
-(6, 'Quarta-feira', 'Ovo cozido', 'arroz e feijão', 'alface', ''),
-(7, 'Quinta-feira', 'Macarrão', 'Carne Moída', '', 'Melão'),
-(8, 'Sexta-feira', 'Frango', 'Arroz e Feijão', 'Alface e Tomate', '');
+(2, 'Segunda-feira', 'a', '', '', ''),
+(3, 'Terça-feira', 'b', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -96,7 +91,14 @@ CREATE TABLE IF NOT EXISTS `tb_confirmacoes_manha` (
   `vai_comer` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `tb_confirmacoes_manha`
+--
+
+INSERT INTO `tb_confirmacoes_manha` (`id`, `id_usuario`, `data_confirmacao`, `vai_comer`) VALUES
+(1, 5, '2025-10-06', 1);
 
 -- --------------------------------------------------------
 
@@ -128,7 +130,14 @@ CREATE TABLE IF NOT EXISTS `tb_confirmacoes_tarde` (
   `vai_comer` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `tb_confirmacoes_tarde`
+--
+
+INSERT INTO `tb_confirmacoes_tarde` (`id`, `id_usuario`, `data_confirmacao`, `vai_comer`) VALUES
+(1, 3, '2025-10-06', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
