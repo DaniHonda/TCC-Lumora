@@ -34,7 +34,7 @@ mysqli_stmt_execute($stmt_check);
 $result_check = mysqli_stmt_get_result($stmt_check);
 
 if (mysqli_num_rows($result_check) == 0) {
-    $sql_insert = "INSERT INTO `$tabela_confirmacao` (id_usuario, data_confirmacao) VALUES (?, ?)";
+    $sql_insert = "INSERT INTO `$tabela_confirmacao` (id_usuario, data_confirmacao, vai_comer) VALUES (?, ?, 1)";
     $stmt_insert = mysqli_prepare($mysql->con, $sql_insert);
     
     if ($stmt_insert) {
