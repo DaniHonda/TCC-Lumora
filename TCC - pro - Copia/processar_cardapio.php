@@ -18,16 +18,25 @@ if ($acao == 'adicionar' && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $salada = $_POST['salada'];
     $sobremesa = $_POST['sobremesa'];
 
-    $sql = "INSERT INTO tb_cardapio (dia_semana, prato_principal, acompanhamento, salada, sobremesa) VALUES (?, ?, ?, ?, ?)";
-    $stmt = mysqli_prepare($mysql->con, $sql);
-    mysqli_stmt_bind_param($stmt, "sssss", $dia_semana, $prato_principal, $acompanhamento, $salada, $sobremesa);
+    $sql_delete = "DELETE FROM tb_cardapio WHERE dia_semana = ?";
+    $stmt_delete = mysqli_prepare($mysql->con, $sql_delete);
+    
+    if ($stmt_delete) {
+        mysqli_stmt_bind_param($stmt_delete, "s", $dia_semana);
+        mysqli_stmt_execute($stmt_delete);
+        mysqli_stmt_close($stmt_delete);
+    }
 
-    if (mysqli_stmt_execute($stmt)) {
+    $sql_insert = "INSERT INTO tb_cardapio (dia_semana, prato_principal, acompanhamento, salada, sobremesa) VALUES (?, ?, ?, ?, ?)";
+    $stmt_insert = mysqli_prepare($mysql->con, $sql_insert);
+    mysqli_stmt_bind_param($stmt_insert, "sssss", $dia_semana, $prato_principal, $acompanhamento, $salada, $sobremesa);
+
+    if (mysqli_stmt_execute($stmt_insert)) {
         header("Location: gerenciar_cardapio.php?status=adicionado");
     } else {
         header("Location: gerenciar_cardapio.php?status=erro");
     }
-    mysqli_stmt_close($stmt);
+    mysqli_stmt_close($stmt_insert);
 
 } elseif ($acao == 'excluir' && isset($_GET['id'])) {
     $id = $_GET['id'];
