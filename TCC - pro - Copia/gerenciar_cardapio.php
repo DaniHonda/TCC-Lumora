@@ -22,6 +22,18 @@ foreach ($diasSemana as $dia) {
     }
 }
 
+$hoje_dia_semana = date('N');
+
+if ($hoje_dia_semana >= 6) {
+    $data_referencia = date('Y-m-d', strtotime('next monday'));
+} else {
+    $data_referencia = date('Y-m-d', strtotime('monday this week'));
+}
+
+$sql_yearweek = "SELECT YEARWEEK('$data_referencia', 1) as target_yearweek";
+$result_yearweek = mysqli_query($mysql->con, $sql_yearweek);
+$target_yearweek = mysqli_fetch_assoc($result_yearweek)['target_yearweek'];
+
 foreach ($turnos as $turno) {
     $tabela = $mapaTabelas[$turno];
     $sql_contagem = "
@@ -37,7 +49,7 @@ foreach ($turnos as $turno) {
         FROM
             `$tabela`
         WHERE
-            YEARWEEK(data_confirmacao, 1) = YEARWEEK(CURDATE(), 1)
+            YEARWEEK(data_confirmacao, 1) = $target_yearweek
         GROUP BY
             dia_semana_nome
     ";
